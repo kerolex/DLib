@@ -27,11 +27,11 @@ void Drawing::drawKeyPoints(cv::Mat &image,
     const std::vector<cv::KeyPoint> &keypoints,
     bool colorOctave, bool useCartesianAngle)
 {
-  CvScalar colors[4] = {
-    cvScalar(0, 0, 255),
-    cvScalar(0, 255, 0),
-    cvScalar(255, 0, 0),
-    cvScalar(255, 255, 255) 
+  cv::Scalar colors[4] = {
+    cv::Scalar(0, 0, 255),
+    cv::Scalar(0, 255, 0),
+    cv::Scalar(255, 0, 0),
+    cv::Scalar(255, 255, 255) 
   };
 
   const double PI = 3.14159265;
@@ -43,7 +43,7 @@ void Drawing::drawKeyPoints(cv::Mat &image,
     float s = it->size / 2.f;
     //if(s < 3.f) s = 3.f;
     
-    const CvScalar *color;
+    const cv::Scalar *color;
     if(!colorOctave || it->octave < 1 || it->octave > 3)
       color = &colors[3];
     else
@@ -106,12 +106,12 @@ void Drawing::drawCorrespondences(cv::Mat &image, const cv::Mat &img1,
   
   cv::Mat aux1, aux2;
   if(img1.channels() > 1)
-    cv::cvtColor(img1, aux1, CV_RGB2GRAY);
+    cv::cvtColor(img1, aux1, cv::RGB2Gray);
   else
     aux1 = img1.clone();
   
   if(img2.channels() > 1)
-    cv::cvtColor(img2, aux2, CV_RGB2GRAY);
+    cv::cvtColor(img2, aux2, cv::RGB2Gray);
   else
     aux2 = img2.clone();
 
@@ -144,7 +144,7 @@ void Drawing::drawCorrespondences(cv::Mat &image, const cv::Mat &img1,
 	cvResetImageROI(ipl_ret);
 
 	// draw correspondences
-	cv::cvtColor(im, image, CV_GRAY2RGB);
+	cv::cvtColor(im, image, cv::Gray2RGB);
 	
 	for(unsigned int i = 0; i < c1.size(); ++i)
 	{
@@ -155,12 +155,12 @@ void Drawing::drawCorrespondences(cv::Mat &image, const cv::Mat &img1,
 	  
 	  py += img1.rows;
 	  
-    CvScalar color = cvScalar( 
+    cv::Scalar color = cv::Scalar( 
       int(((double)rand()/((double)RAND_MAX + 1.0)) * 256.0),
       int(((double)rand()/((double)RAND_MAX + 1.0)) * 256.0),
       int(((double)rand()/((double)RAND_MAX + 1.0)) * 256.0));
 
-    cv::line(image, cvPoint(mx, my), cvPoint(px, py), color, 1);
+    cv::line(image, cv::Point(mx, my), cv::Point(px, py), color, 1);
 	}
 }
 
@@ -210,19 +210,19 @@ void Drawing::drawReferenceSystem(cv::Mat &image, const cv::Mat &cRo,
   cv::projectPoints(cv::Mat(oP), cRo, cto, A, k, points2d);
   
   // draw axis
-  CvScalar bluez, greeny, redx;
+  cv::Scalar bluez, greeny, redx;
   
   if(image.channels() == 3 )
   {
-    bluez = cvScalar(255,0,0);
-    greeny = cvScalar(0,255,0);
-    redx = cvScalar(0,0,255);
+    bluez = cv::Scalar(255,0,0);
+    greeny = cv::Scalar(0,255,0);
+    redx = cv::Scalar(0,0,255);
   }
   else
   {
-    bluez = cvScalar(18,18,18);
-    greeny = cvScalar(182,182,182);
-    redx = cvScalar(120,120,120);
+    bluez = cv::Scalar(18,18,18);
+    greeny = cv::Scalar(182,182,182);
+    redx = cv::Scalar(120,120,120);
   }
 
   cv::line(image, points2d[0], points2d[1], redx, 2);
