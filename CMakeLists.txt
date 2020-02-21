@@ -72,7 +72,15 @@ endif(BUILD_DVision)
 
 
 if(BUILD_DUtilsCV OR BUILD_DVision)
-  find_package(OpenCV REQUIRED)
+  # OpenCV
+  set(OpenCV_DIR "/usr/local/opencv/opencv-3.4.1")
+  find_package(OpenCV REQUIRED PATHS ${OpenCV_DIR} NO_DEFAULT_PATH)
+
+  if(NOT OpenCV_FOUND)
+     message(FATAL_ERROR "OpenCV > 3.x not found.")
+  else()
+	  message(STATUS "OpenCV found.")
+  endif()
 endif(BUILD_DUtilsCV OR BUILD_DVision)
 
 set(LIB_SHARED "SHARED")
