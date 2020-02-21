@@ -13,8 +13,11 @@
 #include "BRIEF.h"
 #include "DUtils.h"
 #include <boost/dynamic_bitset.hpp>
-#include <opencv2/imgproc.hpp>
+
 #include <vector>
+
+#include <opencv2/opencv.hpp>
+//#include <opencv2/imgproc.hpp>
 
 using namespace std;
 using namespace DVision;

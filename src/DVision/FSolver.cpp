@@ -10,9 +10,12 @@
  
 #include <vector>
 #include <cmath>
-#include <opencv2/core.hpp>
-#include "FSolver.h"
 
+#include <opencv2/opencv.hpp>
+//#include <opencv2/core.hpp>
+
+
+#include "FSolver.h"
 #include "DUtils.h"
 #include "DUtilsCV.h"
 

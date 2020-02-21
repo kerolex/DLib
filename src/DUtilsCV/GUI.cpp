@@ -10,13 +10,17 @@
 
 #include <vector>
 #include <queue>
-#include <opencv2/core.hpp>
-#include <opencv2/highgui.hpp>
-#include <opencv2/imgproc.hpp>
 #include <cstdio>
 #include <string>
 #include <sstream>
 #include <algorithm>
+
+#include <opencv2/opencv.hpp>
+//#include <opencv2/core.hpp>
+//#include <opencv2/highgui.hpp>
+//#include <opencv2/imgproc.hpp>
+
+
 #include "GUI.h"
 
 #include <iostream>
