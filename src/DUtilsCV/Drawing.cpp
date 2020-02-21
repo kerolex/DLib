@@ -11,6 +11,8 @@
 #include <vector>
 
 #include <opencv2/opencv.hpp>
+#include <opencv2/core/core_c.h>
+#include <opencv2/core/types_c.h>
 //#include <opencv2/core.hpp>
 //#include <opencv2/highgui.hpp>
 //#include <opencv2/calib3d.hpp>
@@ -52,7 +54,7 @@ void Drawing::drawKeyPoints(cv::Mat &image,
     int r1 = (int)(it->pt.y + 0.5);
     int c1 = (int)(it->pt.x + 0.5);
     
-    cv::circle(image, cvPoint(c1, r1), (int)s, *color, 1);
+    cv::circle(image, cv::Point(c1, r1), (int)s, *color, 1);
     
     if(it->angle >= 0)
     {
@@ -66,7 +68,7 @@ void Drawing::drawKeyPoints(cv::Mat &image,
       else
         r2 = (int)(s * sin(o) + it->pt.y + 0.5);
 
-      cv::line(image, cvPoint(c1, r1), cvPoint(c2, r2), *color);
+      cv::line(image, cv::Point(c1, r1), cv::Point(c2, r2), *color);
     }
   }
 }
@@ -122,7 +124,7 @@ void Drawing::drawCorrespondences(cv::Mat &image, const cv::Mat &img1,
   IplImage ipl_im = IplImage(im);
   IplImage* ipl_ret = &ipl_im;
 
-  CvRect roi;
+  cv::Rect roi;
   roi.x = 0;
   roi.y = 0;
   roi.width = img1.cols;
@@ -137,7 +139,7 @@ void Drawing::drawCorrespondences(cv::Mat &image, const cv::Mat &img1,
   roi.width = img2.cols;
   roi.height = img2.rows;
 	
-  cvSetImageROI(ipl_ret, roi);
+  cv::SetImageROI(ipl_ret, roi);
   IplImage ipl_aux2 = IplImage(aux2);
   cvCopy(&ipl_aux2, ipl_ret);
 
