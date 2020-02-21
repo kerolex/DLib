@@ -106,12 +106,12 @@ void Drawing::drawCorrespondences(cv::Mat &image, const cv::Mat &img1,
   
   cv::Mat aux1, aux2;
   if(img1.channels() > 1)
-    cv::cvtColor(img1, aux1, cv::RGB2Gray);
+    cv::cvtColor(img1, aux1, cv::COLOR_RGB2GRAY);
   else
     aux1 = img1.clone();
   
   if(img2.channels() > 1)
-    cv::cvtColor(img2, aux2, cv::RGB2Gray);
+    cv::cvtColor(img2, aux2, cv::COLOR_RGB2GRAY);
   else
     aux2 = img2.clone();
 
@@ -144,7 +144,7 @@ void Drawing::drawCorrespondences(cv::Mat &image, const cv::Mat &img1,
 	cvResetImageROI(ipl_ret);
 
 	// draw correspondences
-	cv::cvtColor(im, image, cv::Gray2RGB);
+	cv::cvtColor(im, image, cv::COLOR_GRAY2RGB);
 	
 	for(unsigned int i = 0; i < c1.size(); ++i)
 	{
