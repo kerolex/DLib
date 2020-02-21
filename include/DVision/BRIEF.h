@@ -29,8 +29,17 @@
 #ifndef __D_BRIEF__
 #define __D_BRIEF__
 
-#include <opencv2/core.hpp>
+
 #include <vector>
+
+#include "opencv2/core/version.hpp"
+#if CV_MAJOR_VERSION == 2
+  #include <opencv2/core.hpp>
+#elif CV_MAJOR_VERSION == 3
+  #include <opencv2/opencv.hpp>
+//  #include <opencv2/types_c.h>
+#endif
+
 #include <boost/dynamic_bitset.hpp>
 
 namespace DVision {
