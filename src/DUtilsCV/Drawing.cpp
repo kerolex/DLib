@@ -139,7 +139,7 @@ void Drawing::drawCorrespondences(cv::Mat &image, const cv::Mat &img1,
   roi.width = img2.cols;
   roi.height = img2.rows;
 	
-  cv::SetImageROI(ipl_ret, roi);
+  cvSetImageROI(ipl_ret, roi);
   IplImage ipl_aux2 = IplImage(aux2);
   cvCopy(&ipl_aux2, ipl_ret);
 
